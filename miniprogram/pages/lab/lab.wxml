@@ -1,0 +1,56 @@
+<view class="container">
+  <!-- 输入区 -->
+  <view class="inputField">
+    <image src="../../image/conservation.svg" style="width: 500rpx; height: 500rpx" />
+
+    <view class="date">
+      <view class="dateTitle">Date </view>
+      <!-- 日期选择器 -->
+      <view class="datePicker">
+        <view class="dateValue" bindtap="dateClick"><text>{{dateSelect}}</text><van-icon name="calendar-o" size="17px" color="#b6b6b6" /></view>
+      </view>
+      <!-- 时间选择器 -->
+      <view class="timePicker">
+        <view class="dateValue" bindtap="timeClick1"><text>{{timeBegin}}</text><van-icon name="clock-o" size="15px" color="#b6b6b6" /></view>
+        <view class="dateValue" bindtap="timeClick2"><text>{{timeEnd}}</text><van-icon name="clock-o" size="15px" color="#b6b6b6" /></view>
+      </view>
+    </view>
+
+    <!-- <view class="date">
+      <view class="dateTitle">Participants</view>
+    </view> -->
+  </view>
+
+    <!-- 按钮区 -->
+    <view class="buttonField">
+      <button class="cancel" bindtap="cancel">Cancel</button>
+      <button class="submit" bindtap="create">Create</button>
+    </view>
+
+    <!-- 弹窗区 -->
+    <van-calendar color="rgba(159, 193, 245,1)" show="{{ datePicker }}" show-confirm="{{ false }}" bind:close="onCloseCalendar" bind:confirm="onConfirmCalendar"/>
+
+    <van-popup show="{{ timePicker1 }}" bind:close="onClose" position="bottom">
+      <van-datetime-picker
+      type="time"
+      value="{{ currentDate }}"
+      min-hour="{{ minHour }}"
+      max-hour="{{ maxHour }}"
+      filter="{{ filter }}"
+      bind:confirm="onConfirmTimePicker1"
+      bind:cancel="onCloseTimePicker1"
+    />
+    </van-popup>
+
+    <van-popup show="{{ timePicker2 }}" bind:close="onClose" position="bottom">
+      <van-datetime-picker
+      type="time"
+      value="{{ currentDate }}"
+      min-hour="{{ minHour }}"
+      max-hour="{{ maxHour }}"
+      filter="{{ filter }}"
+      bind:confirm="onConfirmTimePicker2"
+      bind:cancel="onCloseTimePicker2"
+    />
+    </van-popup>
+  </view>

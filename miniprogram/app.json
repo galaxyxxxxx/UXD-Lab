@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/lab/lab"
+  ],
+  "window": {
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "UXD Lab",
+    "navigationBarTextStyle": "black",
+    "navigationStyle":"custom"
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index"
+  }
+}

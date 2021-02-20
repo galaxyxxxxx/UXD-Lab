@@ -1,0 +1,71 @@
+<view class="authrization" wx:if="{{isHide}}">
+  <view wx:if="{{canIUse}}">
+    <view class='header'>
+      <image src='../../image/conservation.svg'></image>
+    </view>
+
+    <view class='content'>
+      <view class="applyTitle">申请获取以下权限</view>
+      <text>获得你的公开信息(昵称，头像等)</text>
+    </view>
+
+    <button class='loginBtn' type='primary' open-type="getUserInfo" lang="zh_CN" plain bindgetuserinfo="bindGetUserInfo">
+      授权登录
+    </button>
+  </view>
+  <view wx:else>请升级微信版本</view>
+</view>
+
+<view class="container" wx:else>
+  <!-- 头部 个人信息 -->
+  <view class="infoOut">
+    <view class="userinfo">
+    <view class="left">
+      
+      <view class="today">{{today.date}}</view>
+      <view class="hello">欢迎, {{nickName}}!</view>
+      
+      
+    </view>
+    <view class="avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+  </view>
+  </view>
+  
+
+  <view class="main">
+    <!-- 左侧时间线 -->
+    <view class="timeline">
+      <view class="hourpoint">9:00 </view>
+      <view class="hourpoint">10:00</view>
+      <view class="hourpoint">11:00</view>
+      <view class="hourpoint">12:00</view>
+      <view class="hourpoint">13:00</view>
+      <view class="hourpoint">14:00</view>
+      <view class="hourpoint">15:00</view>
+      <view class="hourpoint">16:00</view>
+      <view class="hourpoint">17:00</view>
+      <view class="hourpoint">18:00</view>
+    </view>
+    <!-- 右侧主体 -->
+    <scroll-view class="scroll" scroll-x="true" enable-flex="true">
+      <!-- 某一天的活动 -->
+      <view class="day" wx:for="{{days}}" wx:key="id">
+        <!-- 日期 -->
+        <view class="date">{{item._id}}</view>
+        <!-- 活动 -->
+        <view wx:for="{{item.labs}}" wx:for-item="lab" wx:key="id">
+          <view class="lab" data-id="{{lab._id}}" style="top:{{lab.top + 62}}rpx; height: {{lab.duration * 118 - 2}}rpx; " bindtap="handleLab" bindlongpress="delete">
+            <view class="titleMini" wx:if="{{lab.duration <= 0.25}}">{{lab.title}}</view>
+            <view class="title" wx:if="{{lab.duration > 0.25}}">{{lab.title}}</view>
+            <view class="time" wx:if="{{lab.duration >= 1}}"><van-icon name="clock-o" size="13px" color="#3D78FF" custom-style="margin-right:8rpx;line-height:25rpx"/>{{lab.timeBegin}} - {{lab.timeEnd}}</view>
+            <!-- <view class="duration" wx:if="{{lab.duration >= 1.25}}">{{lab.duration}}h</view> -->
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="add" bindtap="addLab">+</view>
+  <view class="history">历史</view>
+</view>
