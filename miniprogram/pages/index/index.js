@@ -6,6 +6,8 @@ const lab = db.collection('lab')
 const _ = db.command
 const $ = db.command.aggregate
 
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+
 Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -15,10 +17,26 @@ Page({
     nickName: wx.getStorageSync('nickName'),
     today: {},
     days: [],
+
+    height: 0,  //可视高度
+    hourpoint: [9,10,11,12,13,14,15,16,17,18]
+  },
+
+  style: function() {
+    
+    let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          height: res.windowHeight
+        });
+      }
+    });
   },
 
   onLoad: function () {
 
+    this.style();
     this.authorizationCheck();
     this.setData({
       openid: wx.getStorageSync('openid')
@@ -28,14 +46,54 @@ Page({
   },
 
   onShow: function () {
+    this.initDate();
     this.getLab();
   },
 
-  getLab: function () {
+  // 日期初始化
+  initDate: function() {
     let that = this
+    let days = [{},{},{},{},{},{},{}]
+    let now = new Date()
+    let today = new Date(now.getFullYear() + '/' + (now.getMonth()+1) + '/' + now.getDate())
+    let todayTime = today.getTime()
+    let oneday = 24 * 60 * 60 * 1000
+    for(let i = 0 ; i < 7; i++){
+      let date = new Date(todayTime + oneday*i)
+      days[i].id = date
+      days[i].date = "日一二三四五六". charAt(date.getDay()) + ' ' + date.getDate()
+    }
+    that.setData({
+      days: days
+    })
+  },
+
+  // 查询相应的lab
+  getLab: function () {
+
+    let that = this
+    let tmp = that.data.days
+    that.data.days.map((cur,index)=>{
+      let date = cur.id
+      lab.where({
+        date : date
+      })
+      .get({
+        success:function(res){
+          console.log(res)
+          tmp[index].labs = res.data
+          that.setData({
+            days: tmp
+          })
+        },
+        fail: function(err){
+          console.log(err)
+        }
+      })
+    })
     lab.aggregate()
       .match({
-        dateRaw : _.gte(new Date().getTime() - 60000 * 60)
+        dateRaw : _.gte(new Date().getTime())  //获取当天之后的二十条数据
       })
       .group({
         _id: '$date',
@@ -55,8 +113,12 @@ Page({
       })
       .end({
         success: function (res) {
-          that.setData({
-            days: res.list
+          // console.log(res)
+          res.list.map((cur)=>{
+            // console.log(cur._id)
+            if(new Date('2021/3/1') == cur._id) {
+              console.log("here!!!!!!!!!!!!")
+            }
           })
         },
         fail: function (err) {
@@ -66,7 +128,25 @@ Page({
   },
 
   handleLab(e){
-    console.log(e)
+    let id = e.currentTarget.dataset.id
+  },
+
+  delete(e){
+    let id = e.currentTarget.dataset.id
+    let that = this
+    Dialog.confirm({
+      title: '',
+      message: '取消该会议？',
+    }).then(() => {
+      lab.doc(id).remove({
+        success: function(res) {
+          console.log("已成功取消该活动")
+          that.onShow()
+        }
+      })
+    }).catch(()=>{
+      console.log("取消 取消该活动")
+    });
   },
 
   // 授权检查
@@ -164,7 +244,7 @@ Page({
 
   addLab: function (e) {
     wx.navigateTo({
-      url: '../lab/lab',
+      url: '../labEdit/labEdit',
     })
   }
 

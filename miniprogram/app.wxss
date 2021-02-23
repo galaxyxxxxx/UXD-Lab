@@ -22,6 +22,7 @@ page {
   --font-size-M: 35rpx;
   --font-size-S: 25rpx;
   --font-size-XS: 20rpx;
+  font-family: Helvetica;
 
   --color-theme: #3D78FF;
   --color-theme2: rgba(222,229,247, 0.7);

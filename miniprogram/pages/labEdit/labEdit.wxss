@@ -2,8 +2,6 @@ page{
   /* background-color: var(--color-background); */
 }
 
-
-
 .container{
   width: 750rpx;
   height: 100%;
@@ -110,19 +108,7 @@ button{
   width: 270rpx;
   height: 70rpx;
   border-radius: 35rpx;
-  overflow: hidden;
-  /* border: 1px solid rgba(0, 0, 0, .05); */
-  /* box-shadow: 0 0 5px rgba(0, 0, 0, .15); */
   z-index: 1;
   margin: 0;
   letter-spacing: 5rpx;
-}
-
-.cancel{
-  background-color: #ffffff;
-}
-
-.submit{
-  color: #ffffff;
-  background-color: var(--color-theme) ;
 }

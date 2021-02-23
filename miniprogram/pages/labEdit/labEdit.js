@@ -54,6 +54,10 @@ Page({
   onLoad: function (options) {
     
     let that = this
+
+    let now = new Date()
+    let todayDate = new Date(now.getFullYear() + '/' + (now.getMonth()+1) + '/' + now.getDate())
+
     this.setData({
       openid: wx.getStorageSync('openid')
     })
@@ -61,8 +65,8 @@ Page({
       resolve(util.dateFormat(new Date()))
     }).then((today)=>{
       that.setData({
-        date: new Date().toLocaleDateString(),
-        dateRaw: new Date().getTime(),
+        date: todayDate,
+        dateRaw: todayDate.getTime(),
         dateSelect: today
       })
     })
@@ -88,9 +92,10 @@ Page({
 
   onConfirmCalendar(e){
     console.log(e.detail)
-    let dateRaw = e.detail.getTime()
-    let date = e.detail.toLocaleDateString()
+    let date = e.detail
+    let dateRaw = date.getTime()
     let dateSelect = util.dateFormat(e.detail)
+
     this.setData({
       datePicker: false,
       dateRaw: dateRaw,
@@ -165,7 +170,7 @@ Page({
           timeBegin: that.data.timeBegin,
           timeEnd: that.data.timeEnd,
           duration: parseInt(that.data.timeEnd.split(':')[0]) + parseInt(that.data.timeEnd.split(':')[1]) / 15 * 0.25 - (parseInt(that.data.timeBegin.split(':')[0]) + parseInt(that.data.timeBegin.split(':')[1]) / 15 * 0.25),
-          top: (parseInt(that.data.timeBegin.split(':')[0]) - 9 + parseInt(that.data.timeBegin.split(':')[1]) / 15 * 0.25 ) * 118
+          top: ((parseInt(that.data.timeBegin.split(':')[0])) - 9) * 4  + parseInt(that.data.timeBegin.split(':')[1])
         },
         success: function (res) {
             resolve();

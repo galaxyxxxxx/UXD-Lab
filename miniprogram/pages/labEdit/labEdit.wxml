@@ -23,8 +23,8 @@
 
     <!-- 按钮区 -->
     <view class="buttonField">
-      <button class="cancel" bindtap="cancel">Cancel</button>
-      <button class="submit" bindtap="create">Create</button>
+      <van-button class="cancel" bindtap="cancel" round plain>Cancel</van-button>
+      <van-button class="submit" bindtap="create" round color="linear-gradient(45deg,#3C77FF,#00C2FF)">Create</van-button>
     </view>
 
     <!-- 弹窗区 -->

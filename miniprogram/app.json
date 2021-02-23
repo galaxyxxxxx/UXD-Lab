@@ -1,15 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/lab/lab"
+    "pages/labEdit/labEdit",
+    "pages/labView/labView"
   ],
   "window": {
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#3C77FF",
     "navigationBarTitleText": "UXD Lab",
-    "navigationBarTextStyle": "black",
-    "navigationStyle":"custom"
+    "navigationBarTextStyle": "white"
+    
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {

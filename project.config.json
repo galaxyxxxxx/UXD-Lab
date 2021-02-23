@@ -64,8 +64,15 @@
           "query": ""
         },
         {
-          "name": "lab",
-          "pathName": "pages/lab/lab",
+          "name": "labView",
+          "pathName": "pages/labView/labView",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "labEdit",
+          "pathName": "pages/labEdit/labEdit",
+          "query": "",
           "scene": null
         }
       ]
