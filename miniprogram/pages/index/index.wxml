@@ -61,7 +61,7 @@
       </view>
     </scroll-view>
   </view>
-  <view class="add" bindtap="addLab">+</view>
+  <view class="add" bindtap="addLab"><van-icon name="add" size="50px"color="#3D78FF"/></view>
   <van-dialog id="van-dialog" />
   <!-- <view class="history">历史</view> -->
 </view>
