@@ -2,7 +2,7 @@
 App({
   globalData: {
     openid: ''
-},
+  },
   onLaunch: function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -14,15 +14,13 @@ App({
     }
     this.getopenid(this.cb);
 
-    // 查看是否授权
+    // 查看是否授权 并更新用户表信息
     wx.getSetting({
-      success: function(res){
+      success: function (res) {
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
-            success: function(res) {
-
-              // console.log("authoried already", res.userInfo)
-              //用户已经授权过
+            success: function (res) {
+              console.log("authoried already", res.userInfo)
             }
           })
         }
@@ -33,8 +31,8 @@ App({
   getopenid: function (cb) {
     let that = this;
     const promiseGetOpenid = function () {
-      return new Promise((resolve, reject) => {
 
+      return new Promise((resolve, reject) => {
         if (that.globalData.openid) {
           typeof cb == 'function' && cb(that.globalData.openid);
         } else {
@@ -62,8 +60,9 @@ App({
       });
     };
 
+
     promiseGetOpenid().then(suc => {
-      // 更新user表里的昵称和头像 并加入缓存
+      // 更新user表里的昵称和头像 先加入缓存 再更新用户表
       wx.getUserInfo({
         success(res) {
           // console.log("info", res)
@@ -75,11 +74,63 @@ App({
           wx.setStorageSync('nickName', nickName);
           wx.setStorageSync('avatarUrl', avatarUrl);
           wx.setStorageSync('gender', gender);
-        },
-        fail(err){
-          console.log(err)
+
+          const db = wx.cloud.database({
+            env: 'lab-4g6ny9jc3e33c759'
+          });
+          const _ = db.command;
+
+          wx.cloud.database({
+            env: 'lab-4g6ny9jc3e33c759'
+          }).collection('user').where({
+            _openid: wx.getStorageSync('openid')
+          }).get({
+            success: function (res) {
+              console.log(res,wx.getStorageSync('openid'))
+
+              if (res.data.length == 0) {
+                
+                wx.cloud.database({
+                  env: 'lab-4g6ny9jc3e33c759'
+                }).collection('user').add({
+                  data: {
+                    nickName: nickName,
+                    avatarUrl:avatarUrl,
+                    gender: gender
+                  },
+                  success(res) {
+                    console.log('成功更新用户个人信息', res);
+                  },
+                  fail(err) {
+                    console.log('更新用户个人信息失败', err);
+                  }
+                });
+              }else{
+                wx.cloud.database({
+                  env: 'lab-4g6ny9jc3e33c759'
+              }).collection('user').where({
+                  _openid: wx.getStorageSync('openid')
+              }).update({
+                  data: {
+                      nickName: _.set(nickName),
+                      avatarUrl: _.set(avatarUrl),
+                      gender: _.set(gender)
+                  },
+                  success(res) {
+                      console.log('成功更新用户个人信息', res);
+                  },
+                  fail(err) {
+                      console.log('更新用户个人信息失败', err);
+                  }
+              });
+              }
+            },
+            fail: function (err) {
+              console.log(err)
+            }
+          })
         }
       })
     })
-  }       
+  }
 })
