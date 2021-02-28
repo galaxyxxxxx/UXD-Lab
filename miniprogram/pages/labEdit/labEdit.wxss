@@ -12,6 +12,14 @@ page{
   color: rgba(102, 102, 102, 0.9);
 }
 
+input{
+  font-weight: bold;
+  /* color: #3c97ff; */
+  opacity: 0.5;
+  font-size: var(--font-size-M);
+  text-align: center;
+}
+
 .inputField{
   width: 750rpx;
   height: 70%;
@@ -26,14 +34,11 @@ page{
 /* 标题 */
 .title{
   width: 80%;
-  text-align: center;
-  line-height: 2rem;
-  font-size: var(--font-size-L);
-  color: rgba(0,0,0, 0.7);
+  text-align: left;
+  line-height: 1.5rem;
   padding: 20rpx 0;
   margin: 10rpx 0;
   border-bottom: 1rpx solid rgba(0, 0, 0, .15);
-  
 }
 
 /* 时间选择部分 */
