@@ -3,6 +3,7 @@ const db = wx.cloud.database({
   env: 'lab-4g6ny9jc3e33c759'
 });
 const lab = db.collection('lab')
+const user = db.collection('user')
 const _ = db.command
 const $ = db.command.aggregate
 
@@ -18,12 +19,12 @@ Page({
     today: {},
     days: [],
 
-    height: 0,  //可视高度
-    hourpoint: [9,10,11,12,13,14,15,16,17,18]
+    height: 0, //可视高度
+    hourpoint: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
   },
 
-  style: function() {
-    
+  // 获取当前设备的可视高度 以便适配各种机型
+  style: function () {
     let that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -51,17 +52,17 @@ Page({
   },
 
   // 日期初始化
-  initDate: function() {
+  initDate: function () {
     let that = this
-    let days = [{},{},{},{},{},{},{}]
+    let days = [{}, {}, {}, {}, {}, {}, {}]
     let now = new Date()
-    let today = new Date(now.getFullYear() + '/' + (now.getMonth()+1) + '/' + now.getDate())
+    let today = new Date(now.getFullYear() + '/' + (now.getMonth() + 1) + '/' + now.getDate())
     let todayTime = today.getTime()
     let oneday = 24 * 60 * 60 * 1000
-    for(let i = 0 ; i < 7; i++){
-      let date = new Date(todayTime + oneday*i)
+    for (let i = 0; i < 7; i++) {
+      let date = new Date(todayTime + oneday * i)
       days[i].id = date
-      days[i].date = "日一二三四五六". charAt(date.getDay()) + ' ' + date.getDate()
+      days[i].date = "周" + "日一二三四五六".charAt(date.getDay()) + '&nbsp;&nbsp;&nbsp;' + date.getDate()
     }
     that.setData({
       days: days
@@ -73,65 +74,56 @@ Page({
 
     let that = this
     let tmp = that.data.days
-    that.data.days.map((cur,index)=>{
+    that.data.days.map((cur, index) => {
       let date = cur.id
       lab.where({
-        date : date
-      })
-      .get({
-        success:function(res){
-          console.log(res)
-          tmp[index].labs = res.data
-          that.setData({
-            days: tmp
-          })
-        },
-        fail: function(err){
-          console.log(err)
-        }
-      })
+          date: date
+        })
+        .get({
+          success: function (res) {
+            tmp[index].labs = res.data
+            that.setData({
+              days: tmp
+            })
+            // new Promise((resolve, reject)=>{
+            //   tmp[index].labs = res.data.map((cur2, index2) => {
+            //     user.where({
+            //       _openid: cur2._openid
+            //     }).get({
+            //       success: function (res2) {
+            //         // console.log(res2)
+            //         if (res2.data.length >= 1) {
+            //           cur2.nickName = res2.data[0].nickName
+            //           cur2.avatarUrl = res2.data[0].avatarUrl
+            //           cur2.gender = res2.data[0].gender
+            //           return cur2
+            //         } else {
+            //           console.log("未查到该条记录的创建人信息", cur2._openid)
+            //           return
+            //         }
+            //       }
+            //     })
+            //   })
+            //   resolve(tmp)
+            // }).then((suc)=>{
+            //   console.log(suc)
+            //   that.setData({
+            //     days: tmp
+            //   })
+            // })
+          },
+          fail: function (err) {
+            console.log(err)
+          }
+        })
     })
-    lab.aggregate()
-      .match({
-        dateRaw : _.gte(new Date().getTime())  //获取当天之后的二十条数据
-      })
-      .group({
-        _id: '$date',
-        labs: $.addToSet({
-          _id: '$_id',
-          dateRaw: '$dateRaw',
-          title: '$title',
-          host: '$host',
-          timeBegin: '$timeBegin',
-          timeEnd: '$timeEnd',
-          duration: '$duration',
-          top: '$top'
-        }),
-      })
-      .sort({
-        _id : 1,
-      })
-      .end({
-        success: function (res) {
-          // console.log(res)
-          res.list.map((cur)=>{
-            // console.log(cur._id)
-            if(new Date('2021/3/1') == cur._id) {
-              console.log("here!!!!!!!!!!!!")
-            }
-          })
-        },
-        fail: function (err) {
-          console.log(err)
-        }
-      })
   },
 
-  handleLab(e){
+  handleLab(e) {
     let id = e.currentTarget.dataset.id
   },
 
-  delete(e){
+  delete(e) {
     let id = e.currentTarget.dataset.id
     let that = this
     Dialog.confirm({
@@ -139,12 +131,12 @@ Page({
       message: '取消该会议？',
     }).then(() => {
       lab.doc(id).remove({
-        success: function(res) {
+        success: function (res) {
           console.log("已成功取消该活动")
           that.onShow()
         }
       })
-    }).catch(()=>{
+    }).catch(() => {
       console.log("取消 取消该活动")
     });
   },

@@ -45,7 +45,7 @@
       <!-- 某一天的活动 -->
       <view class="day" wx:for="{{days}}" wx:key="id">
         <!-- 日期 -->
-        <view class="date">{{item.date}}</view>
+        <view class="date"><text decode="{{true}}">{{item.date}}</text></view>
         <!-- 活动 -->
         <view wx:for="{{item.labs}}" wx:for-item="lab" wx:key="id">
           <view class="lab" data-id="{{lab._id}}"
@@ -54,14 +54,13 @@
             <view class="titleMini" wx:if="{{lab.duration <= 0.25}}">{{lab.title}}</view>
             <view class="title" wx:if="{{lab.duration > 0.25}}">{{lab.title}}</view>
             <view class="time" wx:if="{{lab.duration >= 1}}">
-              <!-- <van-icon name="clock-o" size="13px" color="#3D78FF" custom-style="margin-right:0rpx;line-height:25rpx" /> -->
               {{lab.timeBegin}}-{{lab.timeEnd}}</view>
           </view>
         </view>
       </view>
     </scroll-view>
   </view>
-  <view class="add" bindtap="addLab"><van-icon name="add" size="50px"color="#3D78FF"/></view>
+  <view class="add" bindtap="addLab"></view>
   <van-dialog id="van-dialog" />
   <!-- <view class="history">历史</view> -->
 </view>

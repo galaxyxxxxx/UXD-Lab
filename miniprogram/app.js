@@ -20,7 +20,7 @@ App({
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: function (res) {
-              console.log("authoried already", res.userInfo)
+              // console.log("authoried already", res.userInfo)
             }
           })
         }
@@ -86,10 +86,7 @@ App({
             _openid: wx.getStorageSync('openid')
           }).get({
             success: function (res) {
-              console.log(res,wx.getStorageSync('openid'))
-
-              if (res.data.length == 0) {
-                
+              if (res.data.length == 0) {             
                 wx.cloud.database({
                   env: 'lab-4g6ny9jc3e33c759'
                 }).collection('user').add({
@@ -99,10 +96,10 @@ App({
                     gender: gender
                   },
                   success(res) {
-                    console.log('成功更新用户个人信息', res);
+                    console.log('成功增加用户个人信息', res);
                   },
                   fail(err) {
-                    console.log('更新用户个人信息失败', err);
+                    console.log('增加用户个人信息失败', err);
                   }
                 });
               }else{

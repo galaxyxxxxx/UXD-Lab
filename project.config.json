@@ -44,7 +44,7 @@
   },
   "appid": "wxb46a9b48d7346581",
   "projectname": "lab",
-  "libVersion": "2.15.0",
+  "libVersion": "2.14.1",
   "condition": {
     "plugin": {
       "list": []

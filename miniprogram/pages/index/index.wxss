@@ -140,11 +140,21 @@ page{
 }
 /* 日期 */
 .date{
-  height:calc(5vh);
+  height:calc(4vh);
   text-align: center;  
   font-size: 28rpx;
   color: #fff;
-  line-height: calc(5vh);
+  line-height: calc(4vh);
+  
+}
+
+.day:first-of-type .date{
+
+  width: 80%;
+  margin: 0 auto;
+  border-radius: calc(4vh);
+  background-color: #fff;
+  color: #0099ff;
   font-weight: bold;
 }
 
@@ -188,17 +198,21 @@ page{
 }
 
 .add{
-  width: 100rpx;
-  height: 100rpx;
+  width: 50px;
+  height: 50px;
 
   z-index: 1;
   position: fixed;
   right: 50rpx;
   bottom: 80rpx;
 
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjE0MzIwMjYzNTg0IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIwODUiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDY1QzI2NS4xIDY1IDY1IDI2NS4xIDY1IDUxMnMyMDAuMSA0NDcgNDQ3IDQ0NyA0NDctMjAwLjEgNDQ3LTQ0N1M3NTguOSA2NSA1MTIgNjV6IG0yNjYuMyA0MzNjMCAxNy42LTE0LjQgMzItMzIgMzJINTU4djE4OC4zYzAgMTcuNi0xNC40IDMyLTMyIDMycy0zMi0xNC40LTMyLTMyVjUzMEgzMDUuN2MtMTcuNiAwLTMyLTE0LjQtMzItMzJzMTQuNC0zMiAzMi0zMkg0OTRWMjc3LjdjMC0xNy42IDE0LjQtMzIgMzItMzJzMzIgMTQuNCAzMiAzMlY0NjZoMTg4LjNjMTcuNiAwIDMyIDE0LjQgMzIgMzJ6IiBmaWxsPSIjM0Q3OEZGIiBwLWlkPSIyMDg2Ij48L3BhdGg+PC9zdmc+);
+  background-size: 120% 120%;
+  background-position: center;
   border-radius: 50%;
-  
+  box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.3);
 }
+
 
 .history{
   width: 100rpx;
