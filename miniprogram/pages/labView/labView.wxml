@@ -1,2 +1,30 @@
-<!--pages/labView/labView.wxml-->
-<text>pages/labView/labView.wxml</text>
+<view class="container" wx:if="{{loading}}">
+
+    <image src="../../image/meeting.svg" style="width: 400rpx; height: 400rpx; " />
+
+    <view class="title">
+      {{title}}
+    </view>
+    <view class="host">
+      <view class="hostTitle">发起人</view>
+      <view class="hostContent">
+        <view class="avatar" style="background-image: url({{hostAvatar}}); background-"></view>
+        <view class="hostName">{{host}}</view>
+      </view>
+    </view>
+    <view class="date">
+      <view class="dateTitle">时间</view>
+      <!-- 日期选择器 -->
+      <view class="datePicker">
+        <view class="dateValue" bindtap="dateClick"><text>{{date}}</text><van-icon name="calendar-o" size="17px" color="#b6b6b6" /></view>
+      </view>
+      <!-- 时间选择器 -->
+      <view class="timePicker">
+        <view class="dateValue" bindtap="timeClick1"><text>{{timeBegin}}</text><van-icon name="clock-o" size="15px" color="#b6b6b6" /></view>
+        <view class="dateValue" bindtap="timeClick2"><text>{{timeEnd}}</text><van-icon name="clock-o" size="15px" color="#b6b6b6" /></view>
+      </view>
+    </view>
+
+    
+  
+  </view>

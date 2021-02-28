@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText" : "UXD Lab",
+  "navigationBarBackgroundColor" : "#ffffff",
+  "navigationBarTextStyle" : "black",
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index"
+  }
 }

@@ -51,8 +51,8 @@
         <view class="date"><text decode="{{true}}">{{item.date}}</text></view>
         <!-- 活动 -->
         <view wx:for="{{item.labs}}" wx:for-item="lab" wx:key="id">
-          <view class="lab" data-id="{{lab._id}}"
-            style="top:{{height * (9 + lab.top * 2) * 0.01}}px; height: {{lab.duration * height * 0.01 * 8}}px " bindtap="handleLab"
+          <view class="lab" data-id="{{lab._id}}"data-openid="{{lab._openid}}"
+            style="top:{{height * (9 + lab.top * 2) * 0.01}}px; height: {{lab.duration * height * 0.01 * 8}}px " bindtap="viewLab"
             bindlongpress="delete">
             <view class="titleMini" wx:if="{{lab.duration <= 0.25}}">{{lab.title}}</view>
             <view class="title" wx:if="{{lab.duration > 0.25}}">{{lab.title}}</view>

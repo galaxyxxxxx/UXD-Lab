@@ -90,7 +90,7 @@ Page({
 
   // 将字符串的time转换成数字型  便于compare time
   timeTrans(t){
-    return parseInt(t.split(':')[0]) * 60 + parseInt(t.split(':')[1])
+    return parseInt(t.split(':')[0]) * 60 + parseInt(t.split(':')[1]) - 1
   },
   clickCreate(e){
     // 检查时间段是否有重叠
@@ -145,7 +145,7 @@ Page({
           timeBegin: that.data.timeBegin,
           timeEnd: that.data.timeEnd,
           duration: parseInt(that.data.timeEnd.split(':')[0]) + parseInt(that.data.timeEnd.split(':')[1]) / 15 * 0.25 - (parseInt(that.data.timeBegin.split(':')[0]) + parseInt(that.data.timeBegin.split(':')[1]) / 15 * 0.25),
-          top: ((parseInt(that.data.timeBegin.split(':')[0])) - 9) * 4  + parseInt(that.data.timeBegin.split(':')[1])
+          top: ((parseInt(that.data.timeBegin.split(':')[0])) - 9) * 4  + parseInt(that.data.timeBegin.split(':')[1]) / 15
         },
         success: function (res) {
             resolve();

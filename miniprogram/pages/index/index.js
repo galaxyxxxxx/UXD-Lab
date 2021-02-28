@@ -20,7 +20,8 @@ Page({
     days: [],
 
     height: 0, //可视高度
-    hourpoint: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+    hourpoint: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+    loading: false
   },
 
   // 获取当前设备的可视高度 以便适配各种机型
@@ -47,6 +48,7 @@ Page({
   },
 
   onShow: function () {
+    wx.showLoading()
     this.initDate();
     this.getLab();
   },
@@ -83,8 +85,12 @@ Page({
           success: function (res) {
             tmp[index].labs = res.data
             that.setData({
-              days: tmp
+              days: tmp,
+              loading: true
             })
+            setTimeout(() => {
+              wx.hideLoading()
+            }, 0);
           },
           fail: function (err) {
             console.log(err)
@@ -93,14 +99,27 @@ Page({
     })
   },
 
-  handleLab(e) {
+  viewLab(e) {
     let id = e.currentTarget.dataset.id
+    let host = e.currentTarget.dataset.openid
+    if(this.data.openid == host){
+      wx.navigateTo({
+        url: '../labView/labView?id='+id,
+      })
+    }else{
+      wx.navigateTo({
+        url: '../labView/labView?id='+id,
+      })
+    }
   },
 
+  // 只有创建者可删除
   delete(e) {
     let id = e.currentTarget.dataset.id
+    let host = e.currentTarget.dataset.openid
     let that = this
-    Dialog.confirm({
+    if(this.data.openid == host){
+      Dialog.confirm({
       title: '',
       message: '取消该会议？',
     }).then(() => {
@@ -113,6 +132,9 @@ Page({
     }).catch(() => {
       console.log("取消 取消该活动")
     });
+    }else{
+      console.log("无权限")
+    }
   },
 
   // 授权检查
