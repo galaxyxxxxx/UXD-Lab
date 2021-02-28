@@ -85,32 +85,6 @@ Page({
             that.setData({
               days: tmp
             })
-            // new Promise((resolve, reject)=>{
-            //   tmp[index].labs = res.data.map((cur2, index2) => {
-            //     user.where({
-            //       _openid: cur2._openid
-            //     }).get({
-            //       success: function (res2) {
-            //         // console.log(res2)
-            //         if (res2.data.length >= 1) {
-            //           cur2.nickName = res2.data[0].nickName
-            //           cur2.avatarUrl = res2.data[0].avatarUrl
-            //           cur2.gender = res2.data[0].gender
-            //           return cur2
-            //         } else {
-            //           console.log("未查到该条记录的创建人信息", cur2._openid)
-            //           return
-            //         }
-            //       }
-            //     })
-            //   })
-            //   resolve(tmp)
-            // }).then((suc)=>{
-            //   console.log(suc)
-            //   that.setData({
-            //     days: tmp
-            //   })
-            // })
           },
           fail: function (err) {
             console.log(err)
@@ -223,6 +197,7 @@ Page({
     let month = date.getMonth() + 1
 
     today.date = util.monthFormat(date.getMonth() + 1) + '.' + date.getDate() + ' · ' + date.getFullYear()
+    // today.date = "周" + "日一二三四五六".charAt(date.getDay()) + "，" + (date.getMonth() + 1) + "月" + date.getDate() + "日"
     today.year = date.getFullYear()
     today.month = date.getMonth() + 1
     today.day = date.getDate()

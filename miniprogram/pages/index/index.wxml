@@ -1,19 +1,22 @@
 <view class="authrization" wx:if="{{isHide}}">
+
   <view class="authMain" wx:if="{{canIUse}}">
-    <view class='header'>
-      <image src='../../image/conservation.svg'></image>
-    </view>
+
+    <image src='../../image/cover.jpg' width="200rpx" height="200rpx"></image>
 
     <view class='content'>
-      <view class="applyTitle">申请获取以下权限</view>
-      <text>获得你的公开信息(昵称，头像等)</text>
+      <view class="id">Lenovo UXD</view>
+      <view class="description"><text decode="true">Easily Book \n Your Laboratory</text></view>
+      <view class="applyTitle"><text decode="true">UXD Lab is a tool for you to book the laboratory. when you are logging in for the first time, We apply for the following permissions: \nCollect your public infos (Nickname & Avatar).</text></view>
     </view>
 
     <button class='loginBtn' open-type="getUserInfo" lang="zh_CN"
       bindgetuserinfo="bindGetUserInfo">
-      授权登录
+      LOGIN
     </button>
+
   </view>
+
   <view wx:else>请升级微信版本</view>
 </view>
 
@@ -23,7 +26,7 @@
     <view class="left">
 
       <view class="today">{{today.date}}</view>
-      <view class="hello">欢迎, {{nickName}}!</view>
+      <view class="hello" wx:if="{{nickName}}">欢迎, {{nickName}}!</view>
 
 
     </view>

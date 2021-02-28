@@ -63,7 +63,7 @@ Page({
     let reserveDate = todayDate
 
     // 当今日日期已过18点时  可从次日开始预定会议
-    if (nowHour > 18){
+    if (nowHour >= 18){
       reserveDate = new Date(todayDate.getTime() + 24 * 60 * 60 * 1000)
       that.setData({
         timeBegin: "9:00",
