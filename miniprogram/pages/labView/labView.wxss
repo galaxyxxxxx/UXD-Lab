@@ -1,16 +1,19 @@
 page{
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .container{
   width: 100%;
-  height: 100%;
+  height: calc(100vh);
   display: flex;
+  position: fixed;
   flex-direction: column;
   font-size: var(--font-size-S);
   overflow: hidden; 
   color: rgba(102, 102, 102, 0.9);
+  background: #fff;
   /* border-radius: 20rpx; */
   /* box-shadow: 10px 10px 20px rgba(56, 91, 206, 0.1);  */
 }

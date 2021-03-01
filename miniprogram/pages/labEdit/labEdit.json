@@ -1,4 +1,8 @@
 {
+  "enablePullDownRefresh": false,
+  "window":{
+    "backgroundColor" : "#ffffff"
+  },
   "navigationBarTitleText" : "UXD Lab",
   "navigationBarBackgroundColor" : "#ffffff",
   "navigationBarTextStyle" : "black",

@@ -1,15 +1,17 @@
 page{
-  /* background-color: var(--color-background); */
+  background-color: #fff;
 }
 
 .container{
   width: 750rpx;
-  height: 100%;
+  height: calc(100vh);
   display: flex;
+  position: fixed;
   flex-direction: column;
   font-size: var(--font-size-S);
   overflow: hidden; 
   color: rgba(102, 102, 102, 0.9);
+  background-color: #fff;
 }
 
 

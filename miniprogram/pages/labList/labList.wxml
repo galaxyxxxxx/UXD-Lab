@@ -1,5 +1,5 @@
+<wxs src="../../wxs/subutil.wxs" module="tools"/>
 <view class="contain">
-
   <view class="search">
     <van-search class="search" model:value="{{ searchInput }}" shape="round" input-align="center" placeholder="会议名称"
       bind:focus="focus" bind:blur="blur" bind:clear="onClear" bind:search="search" />
@@ -21,15 +21,21 @@
     </view>
   </view>
 
-
-
   <!-- 历史记录 -->
   <view class="labList" wx:if="{{!searchInput && labs}}">
     <view wx:if="{{!labs}}">尚未创建过会议</view>
-    <view wx:for="{{labs}}" wx:key="item" data-id="{{item._id}}" bindtap="viewMore">
-      <van-cell title="{{item.title}}" value="{{item.date}}"label="{{item.timeBegin}} - {{item.timeEnd}}" is-link/>
+
+    <view wx:for="{{labs}}" wx:key="item" data-id="{{item._id}}" >
+        <van-swipe-cell  right-width="{{ 65 }}"   bind:close="delete"  bind:click="test" bind:open="test" data-id="{{item._id}}" >
+          <van-cell title="{{tools.sub(item.title,0,10)}}" value="{{item.date}}"label="{{item.timeBegin}} - {{item.timeEnd}}" is-link data-id="{{item._id}}" bindtap="viewMore"/>
+        <view slot="right" style="height:100%; display:flex; align-items:center;justify-content:center">删除</view>
+    </van-swipe-cell>
+      
     </view>
   </view>
 
    <!-- 空状态 -->
+   <van-dialog id="van-dialog" />
+   
 </view>
+

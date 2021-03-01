@@ -4,6 +4,7 @@ const db = wx.cloud.database({
 });
 const lab = db.collection('lab')
 const _ = db.command
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 Page({
   data: {
     openid: '',
@@ -65,7 +66,7 @@ Page({
     if (this.data.searchInput == '') {
       wx.showToast({
         title: '得先输点儿什么',
-        icon: 'fail',
+        icon: 'error',
         duration: 1500,
       });
       return;
@@ -73,6 +74,7 @@ Page({
 
     lab.where({
       _openid: this.data.openid,
+      dateRaw: _.gte(new Date().getTime()),
       title: db.RegExp({
         regexp: '.*' + this.data.searchInput,
         options: 'i',
@@ -98,6 +100,40 @@ Page({
     })
   },
 
+  delete(e){
+    console.log(e)
+    let id = e.currentTarget.dataset.id
+    let instance  = e.detail.instance;
+    Dialog.confirm({
+      message: '确定删除吗？'
+    }).then(() => {
+      
+      this.setData({
+        searchInput: '',
+        res: '',
+        labs: '',
+        noRes: false,
+      })
+      let that = this
+      lab.doc(id).remove({
+        success: function(res) {
+          that.getLab(wx.getStorageSync('openid'))
+        },
+        fail: function(err) {
+          console.log(err)
+        }
+      })
+
+      instance.close()
+    })
+    .catch(()=>{
+      instance.close()
+    });    
+  },
+
+  test(e){
+    console.log(e)
+  },
   viewMore(e) {
     console.log(e)
     let id = e.currentTarget.dataset.id

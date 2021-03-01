@@ -50,8 +50,8 @@
         <!-- 活动 -->
         <view wx:for="{{item.labs}}" wx:for-item="lab" wx:key="id">
           <view class="lab" data-id="{{lab._id}}"data-openid="{{lab._openid}}" style="top:{{height * (9 + lab.top * 2) * 0.01}}px; height: {{lab.duration * height * 0.01 * 8}}px " bindtap="viewLab" bindlongpress="delete">
-            <view class="titleMini" wx:if="{{lab.duration <= 0.25}}">{{tools.sub(lab.title,0,6)}}</view>
-            <view class="title" wx:if="{{lab.duration > 0.25}}">{{tools.sub(lab.title,0,7)}}</view>
+            <view class="titleMini" wx:if="{{lab.duration <= 0.5}}">{{tools.sub(lab.title,0,6)}}</view>
+            <view class="title" wx:if="{{lab.duration > 0.5}}">{{tools.sub(lab.title,0,7)}}</view>
             <view class="time" wx:if="{{lab.duration >= 1}}">
               {{lab.timeBegin}}-{{lab.timeEnd}}</view>
           </view>

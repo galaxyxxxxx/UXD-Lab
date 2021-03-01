@@ -182,7 +182,7 @@ Page({
         } else {
           wx.showToast({
             title: '该时段不可用',
-            icon: 'fail'
+            icon: 'error'
           })
         }
       })
@@ -219,7 +219,7 @@ Page({
           } else {
             wx.showToast({
               title: '该时段不可用',
-              icon: 'fail'
+              icon: 'error'
             })
           }
 
@@ -233,7 +233,7 @@ Page({
     } else {
       wx.showToast({
         title: '未修改任何内容',
-        icon: 'fail'
+        icon: 'error'
       })
     }
 
