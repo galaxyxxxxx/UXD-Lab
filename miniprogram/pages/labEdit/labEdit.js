@@ -10,6 +10,7 @@ Page({
   data: {
 
     openid: '',
+    placeholder: '',
     nickName: '',
     title: '',
     date: '',  //年月日的日期
@@ -51,7 +52,14 @@ Page({
     let that = this
     let nickName = wx.getStorageSync('nickName')
     that.setData({
-      nickName
+      nickName: nickName,
+      placeholder : nickName + '的会议'
+    })
+  },
+
+  focusTitle(){
+    this.setData({
+      placeholder: ' '
     })
   },
 
@@ -253,6 +261,7 @@ Page({
 
   // 首先检查这个时间是否是晚于开始时间的
   onConfirmTimePicker2(e){
+    console.log(e)
     let begin = this.data.timeBegin
     let beginHour = parseInt(begin.split(":")[0])
     let beginMinite = parseInt(begin.split(":")[1])
@@ -262,12 +271,13 @@ Page({
     let endMinite = parseInt(e.detail.split(":")[1])
 
     let check = ((beginHour * 60 + beginMinite) < (endHour * 60 + endMinite)) ? true : false
-
-    console.log(check)
+    
+    let that = this
     if(check){
+      console.log(check,end)
       wx.hideToast({
         success: (res) => {
-          this.setData({
+          that.setData({
             timePicker2: false,
             timeEnd: end
           });

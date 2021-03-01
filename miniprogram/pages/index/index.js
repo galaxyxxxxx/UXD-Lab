@@ -218,8 +218,8 @@ Page({
     let date = new Date()
     let month = date.getMonth() + 1
 
-    today.date = util.monthFormat(date.getMonth() + 1) + '.' + date.getDate() + ' · ' + date.getFullYear()
-    // today.date = "周" + "日一二三四五六".charAt(date.getDay()) + "，" + (date.getMonth() + 1) + "月" + date.getDate() + "日"
+    // today.date = util.monthFormat(date.getMonth() + 1) + '.' + date.getDate() + ' · ' + date.getFullYear()
+    today.date = "周" + "日一二三四五六".charAt(date.getDay()) + "，" + (date.getMonth() + 1) + "月" + date.getDate() + "日"
     today.year = date.getFullYear()
     today.month = date.getMonth() + 1
     today.day = date.getDate()

@@ -1,4 +1,4 @@
-function weekFormat(week) {
+function weekFormatEN(week) {
   switch (week) {
     case 0: return 'Sunday'; break;
     case 1: return 'Monday'; break;
@@ -10,8 +10,7 @@ function weekFormat(week) {
     default: break;
   }
 }
-
-function monthFormat(month) {
+function monthFormatEN(month) {
   switch (month) {
     case 1: return 'Jan'; break;
     case 2: return 'Feb'; break;
@@ -28,20 +27,34 @@ function monthFormat(month) {
     default: break;
   }
 }
+function dateFormatEN(date) {
+  let week = date.getDay()
+  let day = date.getDate()
+  let month = date.getMonth()+1
+  let year = date.getFullYear()
+  let weekFormat = this.weekFormatEN(week)
+  let monthFormat = this.monthFormatEN(month)
+  return weekFormat + ',  ' + day + ' ' + monthFormat + ' ' + year
+}
 
+function weekFormatCN(week) {
+  return '周' + '日一二三四五六'.charAt(week)
+}
+function monthFormatCN(month) {
+  return month
+}
 function dateFormat(date) {
   let week = date.getDay()
   let day = date.getDate()
   let month = date.getMonth()+1
   let year = date.getFullYear()
-  let weekFormat = this.weekFormat(week)
-  let monthFormat = this.monthFormat(month)
-  // console.log("utils", weekFormat + ', ' + day + ' ' + monthFormat + ' ' + year)
-  return weekFormat + ',  ' + day + ' ' + monthFormat + ' ' + year
+  let weekFormat = this.weekFormatCN(week)
+  let monthFormat = this.monthFormatCN(month)
+  return weekFormat + ',  ' +  monthFormat + '月' + day + '日'
 }
 
 module.exports = {
   dateFormat : dateFormat,
-  weekFormat : weekFormat,
-  monthFormat : monthFormat
+  weekFormatCN : weekFormatCN,
+  monthFormatCN : monthFormatCN
 }

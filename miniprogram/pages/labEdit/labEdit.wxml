@@ -4,12 +4,12 @@
     <image src="../../image/conservation.svg" style="width: 500rpx; height: 500rpx" />
 
     <view class="title">
-      <input type="text" placeholder="{{nickName}}的会议" model:value="{{title}}" />
-      <!-- <van-icon name="edit" /> -->
+      <input type="text" placeholder="{{placeholder}}" model:value="{{title}}" maxlength="7" onfocus="focusTitle"/>
+      <van-icon name="edit" custom-style="right: 16rpx"size="20px" color="#b6b6b6" />
     </view>
 
     <view class="date">
-      <view class="dateTitle">Date </view>
+      <view class="dateTitle">日期 </view>
       <!-- 日期选择器 -->
       <view class="datePicker">
         <view class="dateValue" bindtap="dateClick"><text>{{dateSelect}}</text><van-icon name="calendar-o" size="17px" color="#b6b6b6" /></view>
@@ -24,12 +24,12 @@
 
     <!-- 按钮区 -->
     <view class="buttonField">
-      <van-button class="cancel" bindtap="cancel" round plain>Cancel</van-button>
-      <van-button class="submit" bindtap="clickCreate" round color="linear-gradient(45deg,#3C77FF,#00C2FF)">Create</van-button>
+      <van-button class="cancel" bindtap="cancel" round plain>取消</van-button>
+      <van-button class="submit" bindtap="clickCreate" round color="linear-gradient(45deg,#3C77FF,#00C2FF)">创建</van-button>
     </view>
 
     <!-- 弹窗区 -->
-    <van-calendar color="rgba(159, 193, 245,1)" show="{{ datePicker }}" show-confirm="{{ false }}" bind:close="onCloseCalendar" bind:confirm="onConfirmCalendar"/>
+    <van-calendar color="rgba(222,229,247, 0.7)" show="{{ datePicker }}" show-confirm="{{ false }}" bind:close="onCloseCalendar" bind:confirm="onConfirmCalendar"/>
 
     <van-popup show="{{ timePicker1 }}"  position="bottom">
       <van-datetime-picker

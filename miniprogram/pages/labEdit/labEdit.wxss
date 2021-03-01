@@ -12,20 +12,13 @@ page{
   color: rgba(102, 102, 102, 0.9);
 }
 
-input{
-  font-weight: bold;
-  /* color: #3c97ff; */
-  opacity: 0.5;
-  font-size: var(--font-size-M);
-  text-align: center;
-}
+
 
 .inputField{
   width: 750rpx;
   height: 70%;
   padding: 20rpx 50rpx ;
   position: fixed;
-  /* background-color: azure; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,11 +27,25 @@ input{
 /* 标题 */
 .title{
   width: 80%;
+  height: 40rpx;
   text-align: left;
-  line-height: 1.5rem;
+  
   padding: 20rpx 0;
   margin: 10rpx 0;
   border-bottom: 1rpx solid rgba(0, 0, 0, .15);
+  color: rgb(165, 165, 165);
+}
+input{
+  position: absolute;
+  width: 70%;
+  opacity: 0.5;
+  font-size: var(--font-size-M);
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2rem;
+}
+van-icon{
+  float: right;
 }
 
 /* 时间选择部分 */
