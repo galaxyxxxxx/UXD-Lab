@@ -1,10 +1,10 @@
-<view class="container">
+<view class="container" wx:if="{{(create || modify) && loading}}">
   <!-- 输入区 -->
-  <view class="inputField">
+  <view class="inputField" >
     <image src="../../image/conservation.svg" style="width: 500rpx; height: 500rpx" />
 
     <view class="title">
-      <input type="text" placeholder="{{placeholder}}" model:value="{{title}}" maxlength="7" onfocus="focusTitle"/>
+      <input type="text" placeholder="{{placeholder}}" model:value="{{title}}" maxlength="15" bindinput="inputTitle" bindblur="blur"/>
       <van-icon name="edit" custom-style="right: 16rpx"size="20px" color="#b6b6b6" />
     </view>
 
@@ -23,10 +23,12 @@
   </view>
 
     <!-- 按钮区 -->
-    <view class="buttonField">
+    <view class="buttonField" >
       <van-button class="cancel" bindtap="cancel" round plain>取消</van-button>
-      <van-button class="submit" bindtap="clickCreate" round color="linear-gradient(45deg,#3C77FF,#00C2FF)">创建</van-button>
+      <van-button wx:if="{{create}}"class="submit" bindtap="clickCreate" round color="linear-gradient(45deg,#3C77FF,#00C2FF)">创建</van-button>
+      <van-button wx:if="{{modify}}"class="submit" bindtap="clickModify" round color="linear-gradient(45deg,#3C77FF,#00C2FF)">修改</van-button>
     </view>
+
 
     <!-- 弹窗区 -->
     <van-calendar color="rgba(222,229,247, 0.7)" show="{{ datePicker }}" show-confirm="{{ false }}" bind:close="onCloseCalendar" bind:confirm="onConfirmCalendar"/>

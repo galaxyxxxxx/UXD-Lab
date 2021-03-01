@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText" : "预定记录",
+  "navigationBarBackgroundColor" : "#ffffff",
+  "navigationBarTextStyle" : "black",
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-cell": "@vant/weapp/cell/index"
+  }
+}

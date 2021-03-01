@@ -5,7 +5,10 @@ page{
 
 .container{
   height: calc(100vh);
-  background :linear-gradient(#3C77FF,#00C2FF,#00C2FF, #00C2FF);
+  /* background :linear-gradient(#3C77FF,#00C2FF,#00C2FF, #00C2FF); */
+  background: url(http://60.205.155.131/wp-content/uploads/2021/03/bg.jpg);
+  background-size: 100% 100%;
+  background-position-y: -1px;
 }
 
 
@@ -190,17 +193,21 @@ page{
 
 /* 活动 */
 .lab{
-  display: block;
-  flex-direction: column;
-  width: calc(30vw - 50rpx);
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: calc(30vw - 50rpx);
+  margin-left: 16rpx;
   padding: 0 18rpx;
+
   border: 2rpx solid #3d77ff34;
   background-color: var(--color-theme2);
   border-radius: 8rpx;
+
   color: var(--color-theme);
   line-height: 50rpx;
-  margin-left: 16rpx;
 }
 
 .lab:active{
@@ -213,7 +220,7 @@ page{
   /* margin-top: 10rpx; */
   font-weight: bold;
   line-height: 30rpx;
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 
 .title{

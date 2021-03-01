@@ -1,0 +1,7 @@
+.empty{
+  margin-top: 20%;
+  width: 100%;
+  text-align: center;
+  color: #999;
+  font-size: var(--font-size-S);
+}

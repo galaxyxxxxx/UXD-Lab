@@ -14,11 +14,12 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false,
 
-    openid: '',
+    openid: wx.getStorageSync('oepnid'),
     nickName: wx.getStorageSync('nickName'),
     today: {},
     days: [],
 
+    width: 0,
     height: 0, //可视高度
     hourpoint: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
     loading: false
@@ -29,7 +30,9 @@ Page({
     let that = this;
     wx.getSystemInfo({
       success: function (res) {
+        console.log(res)
         that.setData({
+          width: res.windowWidth,
           height: res.windowHeight
         });
       }
@@ -40,9 +43,6 @@ Page({
 
     this.style();
     this.authorizationCheck();
-    this.setData({
-      openid: wx.getStorageSync('openid')
-    })
     this.getToday();
 
   },
@@ -86,6 +86,8 @@ Page({
             tmp[index].labs = res.data
             that.setData({
               days: tmp,
+              openid: wx.getStorageSync('openid'),
+              nickName: wx.getStorageSync('nickName'),
               loading: true
             })
             setTimeout(() => {
@@ -99,12 +101,18 @@ Page({
     })
   },
 
+  // 滚动事件
+  scroll(e){
+    console.log(e)
+  },
+
+  // 短按 查看、修改
   viewLab(e) {
     let id = e.currentTarget.dataset.id
     let host = e.currentTarget.dataset.openid
     if(this.data.openid == host){
       wx.navigateTo({
-        url: '../labView/labView?id='+id,
+        url: '../labEdit/labEdit?id='+id,
       })
     }else{
       wx.navigateTo({
@@ -113,7 +121,7 @@ Page({
     }
   },
 
-  // 只有创建者可删除
+  // 长按删除
   delete(e) {
     let id = e.currentTarget.dataset.id
     let host = e.currentTarget.dataset.openid
@@ -185,12 +193,6 @@ Page({
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
-      // 获取到用户的信息了，打印到控制台上看下
-
-      // console.log("用户的信息如下：");
-      // console.log(e.detail.userInfo);
-
-      //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
       that.setData({
         isHide: false
       });
@@ -235,6 +237,20 @@ Page({
     wx.navigateTo({
       url: '../labEdit/labEdit',
     })
-  }
+  },
+
+  me(){
+    wx.navigateTo({
+      url: '../labList/labList',
+    })
+  },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    wx.showLoading()
+    this.initDate();
+    this.getLab();
+    wx.stopPullDownRefresh();
+},
 
 })

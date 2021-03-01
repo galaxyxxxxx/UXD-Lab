@@ -72,6 +72,18 @@
         {
           "name": "labEdit",
           "pathName": "pages/labEdit/labEdit",
+          "query": "id=28ee4e3e603b8b390817754616133e04",
+          "scene": null
+        },
+        {
+          "name": "labList",
+          "pathName": "pages/labList/labList",
+          "query": "id=28ee4e3e603b8b390817754616133e04",
+          "scene": null
+        },
+        {
+          "name": "labEdit0",
+          "pathName": "pages/labEdit/labEdit",
           "query": "",
           "scene": null
         }

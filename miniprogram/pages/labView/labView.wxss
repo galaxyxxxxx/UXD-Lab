@@ -21,11 +21,11 @@ page{
 .title{
   width: 80%;
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: var(--font-size-L);
   line-height: 1rem;
   padding: 20rpx 0;
-  margin: 10rpx 0;
+  margin: 50rpx 0;
   border-bottom: 1rpx solid rgba(0, 0, 0, .15);
 }
 
@@ -35,7 +35,7 @@ page{
   height: 20%;
   display: block;
   font-weight: bold;
-  margin: 20rpx 0;
+  margin: 50rpx 0;
 }
 
 .dateTitle{
