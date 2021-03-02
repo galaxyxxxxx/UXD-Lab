@@ -12,12 +12,12 @@ Page({
    */
   data: {
     id: '',
-    title:'hi',
-    date: '1',
-    timeBegin: '1',
-    timeEnd: '1',
-    host: '1',
-    hostAvatar: '1',
+    title:'',
+    date: '',
+    timeBegin: '',
+    timeEnd: '',
+    host: '',
+    hostAvatar: '',
     loading: false
   },
 
@@ -25,13 +25,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    wx.showLoading()
     this.setData({
       id: options.id
     })
-    this.getLab(options.id)
-   
+  },
+
+  onShow: function (){
+    wx.showLoading()
+    this.getLab(this.data.id)
   },
 
   getLab(id){
@@ -45,16 +46,18 @@ Page({
         timeBegin: lab.timeBegin,
         timeEnd: lab.timeEnd
       })
-      this.getHost(lab._openid)
+      this.getHost(res.data[0]._openid)
     })
   },
 
   getHost(openid){
-    user.where({
+    let that = this
+    db.collection('user').where({
       _openid: openid
-    }).get().then((res)=>{
-      let user = res.data[0]
-      this.setData({
+    }).get().then((res2)=>{
+      let user = res2.data[0]
+      console.log("user",res2)
+      that.setData({
         host: user.nickName,
         hostAvatar: user.avatarUrl,
         loading : true
@@ -62,6 +65,7 @@ Page({
       setTimeout(()=>{
         wx.hideLoading()
       },0)
+
     })
   },
 

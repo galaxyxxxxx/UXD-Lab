@@ -25,7 +25,7 @@ page{
   width: 80%;
   text-align: center;
   /* font-weight: bold; */
-  font-size: var(--font-size-L);
+  font-size: 35rpx;
   line-height: 1rem;
   padding: 20rpx 0;
   margin: 50rpx 0;
@@ -47,35 +47,10 @@ page{
   font-weight: 600;
 }
 
-/* 日期选择部分 */
-.datePicker{
-  display: block;
-  height: 35%;
-}
-.dateValue{
-  padding: 0 20rpx;
-  border-radius: 10rpx;
-  border: 3rpx solid rgba(0, 0, 0, .15);
-  line-height: 80rpx;
-  display: flex;
-  justify-content: space-between;
-}
-.dateValue:active{
-  box-shadow: 0 0 3px rgba(4, 0, 248, 0.5)
-}
-
-/* 时分选择部分 */
-.timePicker{
-  display: flex;
-  justify-content: space-between;
-  /* background-color: rgba(240, 248, 255, 0.226); */
-}
-.timePicker .dateValue{
-  width: 40%;
-  border: 3rpx solid rgba(0, 0, 0, .15);
-}
-.timePicker .dateValue:active{
-  box-shadow: 0 0 3px rgba(4, 0, 248, 0.5)
+.dateContent{
+  line-height: 1.5rem;
+  opacity: 0.5;
+  font-size: 30rpx;
 }
 
 /* 发起人 */
@@ -86,9 +61,14 @@ page{
   margin: 20rpx 0;
 }
 .hostTitle{
-  font-size: var(--font-size-M);
+  font-size: 35rpx;
   font-weight: 600;
   margin-bottom: 20rpx;
+}
+.hostName{
+  font-size: 30rpx;
+  margin-left: 24rpx;
+  opacity: 0.5;
 }
 .hostContent{
   display: flex;
@@ -100,9 +80,4 @@ page{
   height: 50rpx;
   border-radius: 50%;
   background-size: auto 100%;
-}
-.hostName{
-  font-weight: 400;
-  font-size: var(--font-size-M);
-  margin-left: 24rpx;
 }

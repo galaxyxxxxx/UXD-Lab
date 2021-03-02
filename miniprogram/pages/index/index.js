@@ -73,7 +73,6 @@ Page({
 
   // 查询相应的lab
   getLab: function () {
-
     let that = this
     let tmp = that.data.days
     that.data.days.map((cur, index) => {
@@ -102,7 +101,7 @@ Page({
   },
 
   // 滚动事件
-  scroll(e){
+  scroll(e) {
     console.log(e)
   },
 
@@ -110,13 +109,13 @@ Page({
   viewLab(e) {
     let id = e.currentTarget.dataset.id
     let host = e.currentTarget.dataset.openid
-    if(this.data.openid == host){
+    if (this.data.openid == host) {
       wx.navigateTo({
-        url: '../labEdit/labEdit?id='+id,
+        url: '../labEdit/labEdit?id=' + id,
       })
-    }else{
+    } else {
       wx.navigateTo({
-        url: '../labView/labView?id='+id,
+        url: '../labView/labView?id=' + id,
       })
     }
   },
@@ -126,21 +125,21 @@ Page({
     let id = e.currentTarget.dataset.id
     let host = e.currentTarget.dataset.openid
     let that = this
-    if(this.data.openid == host){
+    if (this.data.openid == host) {
       Dialog.confirm({
-      title: '',
-      message: '取消该会议？',
-    }).then(() => {
-      lab.doc(id).remove({
-        success: function (res) {
-          console.log("已成功取消该活动")
-          that.onShow()
-        }
-      })
-    }).catch(() => {
-      console.log("取消 取消该活动")
-    });
-    }else{
+        title: '',
+        message: '取消该会议？',
+      }).then(() => {
+        lab.doc(id).remove({
+          success: function (res) {
+            console.log("已成功取消该活动")
+            that.onShow()
+          }
+        })
+      }).catch(() => {
+        console.log("取消 取消该活动")
+      });
+    } else {
       console.log("无权限")
     }
   },
@@ -239,7 +238,7 @@ Page({
     })
   },
 
-  me(){
+  me() {
     wx.navigateTo({
       url: '../labList/labList',
     })
@@ -251,6 +250,14 @@ Page({
     this.initDate();
     this.getLab();
     wx.stopPullDownRefresh();
-},
+  },
 
+  // 分享
+  onShareAppMessage: function (res) {
+    
+    return {
+      title: "实验室日程占用分享",
+      path: '../index/index'
+    }
+  }
 })

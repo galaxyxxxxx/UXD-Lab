@@ -31,7 +31,7 @@ Page({
   getLab(openid) {
     lab.where({
         _openid: openid,
-        dateRaw: _.gte(new Date().getTime())
+        dateRaw: _.gte(new Date(new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate()).getTime())
       })
       .orderBy('dateRaw', 'asc')
       .get()
@@ -74,7 +74,7 @@ Page({
 
     lab.where({
       _openid: this.data.openid,
-      dateRaw: _.gte(new Date().getTime()),
+      dateRaw: _.gte(new Date(new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate()).getTime()),
       title: db.RegExp({
         regexp: '.*' + this.data.searchInput,
         options: 'i',
@@ -131,9 +131,6 @@ Page({
     });    
   },
 
-  test(e){
-    console.log(e)
-  },
   viewMore(e) {
     console.log(e)
     let id = e.currentTarget.dataset.id
@@ -141,16 +138,4 @@ Page({
       url: '../labEdit/labEdit?id=' + id,
     })
   },
-
-  onPullDownRefresh: function () {
-
-  },
-
-  onReachBottom: function () {
-
-  },
-
-  onShareAppMessage: function () {
-
-  }
 })

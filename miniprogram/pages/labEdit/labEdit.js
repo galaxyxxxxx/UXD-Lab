@@ -1,3 +1,4 @@
+const { default: dialog } = require('../../miniprogram_npm/@vant/weapp/dialog/dialog');
 const util = require('../../util/utils')
 const db = wx.cloud.database({
   env: 'lab-4g6ny9jc3e33c759'
@@ -171,7 +172,7 @@ Page({
           console.log(cur)
           let max = [this.timeTrans(cur.timeBegin), this.timeTrans(timeBegin)]
           let min = [this.timeTrans(cur.timeEnd), this.timeTrans(timeEnd)]
-          if (Math.max.apply(null, max) <= Math.min.apply(null, min)) {
+          if (Math.max.apply(null, max) < Math.min.apply(null, min)) {
             return false;
           } else {
             return true
@@ -208,7 +209,7 @@ Page({
           let checkTime = (cur) => {
             let max = [this.timeTrans(cur.timeBegin), this.timeTrans(timeBegin)]
             let min = [this.timeTrans(cur.timeEnd), this.timeTrans(timeEnd)]
-            if (Math.max.apply(null, max) <= Math.min.apply(null, min)) {
+            if (Math.max.apply(null, max) < Math.min.apply(null, min)) {
               return false;
             } else {
               return true
@@ -454,7 +455,19 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+   onShareAppMessage: function (res) {
+    if(this.data.modify){
+      return {
+      title: this.data.nickName + "创建了一个会议《" + (title || (this.data.nickName + '的会议')) + "》",
+      path: '../labView/labView?id=' + this.data.id
+    }
+    }else{
+      wx.showToast({
+        title: '先创建再分享吧',
+        icon: 'error',
+        duration: 3000
+      })
+    }
+    
   }
 })

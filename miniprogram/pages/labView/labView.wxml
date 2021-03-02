@@ -14,17 +14,6 @@
     </view>
     <view class="date">
       <view class="dateTitle">时间</view>
-      <!-- 日期选择器 -->
-      <view class="datePicker">
-        <view class="dateValue" bindtap="dateClick"><text>{{date}}</text><van-icon name="calendar-o" size="17px" color="#b6b6b6" /></view>
-      </view>
-      <!-- 时间选择器 -->
-      <view class="timePicker">
-        <view class="dateValue" bindtap="timeClick1"><text>{{timeBegin}}</text><van-icon name="clock-o" size="15px" color="#b6b6b6" /></view>
-        <view class="dateValue" bindtap="timeClick2"><text>{{timeEnd}}</text><van-icon name="clock-o" size="15px" color="#b6b6b6" /></view>
-      </view>
-    </view>
-
-    
-  
+      <view class="dateContent"><text decode="true">{{date}}&nbsp;&nbsp;&nbsp;{{timeBegin}} — {{timeEnd}}</text></view>
+    </view> 
   </view>
