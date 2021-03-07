@@ -23,7 +23,7 @@
 
   <!-- 历史记录 -->
   <view class="labList" wx:if="{{!searchInput && labs}}">
-    <view wx:if="{{!labs}}">尚未创建过会议</view>
+    <view wx:if="{{labs.length==0}}" class="empty">尚未创建过会议</view>
 
     <view wx:for="{{labs}}" wx:key="item" data-id="{{item._id}}" >
         <van-swipe-cell  right-width="{{ 65 }}"   bind:close="delete"  bind:click="test" bind:open="test" data-id="{{item._id}}" >

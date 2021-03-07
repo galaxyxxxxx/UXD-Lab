@@ -4,12 +4,12 @@
     <image src="../../image/conservation.svg" style="width: 500rpx; height: 500rpx" />
 
     <view class="title">
-      <input type="text" placeholder="{{placeholder}}" model:value="{{title}}" maxlength="15" bindinput="inputTitle" bindblur="blur"/>
+      <input type="text" placeholder="{{placeholder}}" model:value="{{title}}" maxlength="15" bindinput="inputTitle" bindblur="blur" s/>
       <van-icon name="edit" custom-style="right: 16rpx"size="20px" color="#b6b6b6" />
     </view>
 
     <view class="date">
-      <view class="dateTitle">日期 </view>
+      <view class="dateTitle">日期</view>
       <!-- 日期选择器 -->
       <view class="datePicker">
         <view class="dateValue" bindtap="dateClick"><text>{{dateSelect}}</text><van-icon name="calendar-o" size="17px" color="#b6b6b6" /></view>

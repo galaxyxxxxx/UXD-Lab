@@ -140,7 +140,6 @@ Page({
 
   // 修改title时  更改修改状态
   inputTitle(e){
-    console.log("input",e)
     this.setData({
       placeholder: '',
       modifyed: true
