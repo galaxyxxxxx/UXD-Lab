@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": false,
+  "navigationBarTitleText" : "例会分享顺序",
+  "navigationBarBackgroundColor" : "#ffffff",
+  "navigationBarTextStyle" : "black",
+  "usingComponents": {}
+}

@@ -244,6 +244,12 @@ Page({
     })
   },
 
+  viewOrder() {
+    wx.navigateTo({
+      url: '../shareOrder/shareOrder',
+    })
+  },
+
   // 下拉刷新
   onPullDownRefresh() {
     wx.showLoading()

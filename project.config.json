@@ -86,6 +86,12 @@
           "pathName": "pages/labEdit/labEdit",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "shareOrder",
+          "pathName": "pages/shareOrder/shareOrder",
+          "query": "",
+          "scene": null
         }
       ]
     }

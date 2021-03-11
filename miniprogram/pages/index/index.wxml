@@ -22,17 +22,13 @@
   <!-- 头部 个人信息 -->
   <view class="userinfo">
     <view class="left">
-
       <view class="today">{{today.date}}</view>
       <view class="hello" wx:if="{{nickName}}">欢迎, {{nickName}}!</view>
-
-
     </view>
     <view class="avatar" bindtap="me">
       <open-data type="userAvatarUrl" ></open-data>
     </view>
   </view>
-
 
   <view class="main">
     <!-- 左侧时间线 -->
@@ -60,6 +56,7 @@
     </scroll-view>
   </view>
   <view class="add" bindtap="addLab"></view>
+  <view class="order" bindtap="viewOrder"></view>
   <van-dialog id="van-dialog" />
   <!-- <view class="history">历史</view> -->
 </view>

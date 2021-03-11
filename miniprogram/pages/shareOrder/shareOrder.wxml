@@ -1,0 +1,3 @@
+<view class="listImg">
+  <image src="../../image/list.png"  mode="aspectFit"></image>
+</view>
