@@ -58,5 +58,4 @@
   <view class="add" bindtap="addLab"></view>
   <view class="order" bindtap="viewOrder"></view>
   <van-dialog id="van-dialog" />
-  <!-- <view class="history">历史</view> -->
 </view>
